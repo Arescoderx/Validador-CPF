@@ -9,7 +9,7 @@ const App = () => {
   const [cpf, setCpf] = useState("");
 
   const validateCpf = (cpf) => {
-    const numCpf = cpf.replace(/\D/g, ""); 
+    const numCpf = cpf.replace(/\D/g, "");
 
     if (numCpf.length !== 11) {
       return false;
@@ -19,7 +19,7 @@ const App = () => {
       return false;
     }
 
-    let cpfQuebrado = numCpf.split('').map((item) => Number(item));
+    let cpfQuebrado = numCpf.split("").map((item) => Number(item));
 
     let soma = 0;
     let resto = 0;
@@ -70,25 +70,35 @@ const App = () => {
   };
 
   return (
-    <Form onSubmit={onSubmit}>
-      <Row className="mb-3">
-        <Form.Label column sm={2}>
-          CPF
-        </Form.Label>
-        <Col sm={10}>
-          <IMaskInput
-            mask="000.000.000-00"
-            value={cpf}
-            onAccept={(value) => setCpf(value)}
-            placeholder="Insira o CPF"
-            className="form-control"
-          />
-        </Col>
-      </Row>
-      <Button variant="primary" type="submit" className="mt-3">
-        Confirmar
-      </Button>
-    </Form>
+    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+      <div
+        className="card shadow p-4"
+        style={{ maxWidth: "500px", width: "100%", borderRadius: "1rem" }}
+      >
+        <h4 className="mb-4 text-center">Validação de CPF</h4>
+        <Form onSubmit={onSubmit}>
+          <Form.Group as={Row} className="mb-3" controlId="formCpf">
+            <Form.Label column sm={1.5} className="fw-semibold">
+              CPF
+            </Form.Label>
+            <Col sm={12}>
+              <IMaskInput
+                mask="000.000.000-00"
+                value={cpf}
+                onAccept={(value) => setCpf(value)}
+                placeholder="Insira o CPF"
+                className="form-control"
+              />
+            </Col>
+          </Form.Group>
+          <div className="d-grid">
+            <Button variant="primary" type="submit" size="lg">
+              Confirmar
+            </Button>
+          </div>
+        </Form>
+      </div>
+    </div>
   );
 };
 
